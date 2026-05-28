@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#17131b">
-  <meta name="description" content="Responsive searchable schedule for The Great Estate festival weekend.">
+  <meta name="description" content="Responsive searchable schedule for The Great Estate festival weekend, with visible venue filters and starred events.">
   <title>The Great Estate Events</title>
+  <!-- Build: venue-filters-visible-2026-05-28 -->
   <style>
 :root {
   color-scheme: dark;
@@ -59,6 +60,13 @@ button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px sol
 .venue-box > summary:after { content:"Show"; color:var(--muted); font-size:.9rem; }
 .venue-box[open] > summary:after { content:"Hide"; }
 .venue-box .chips { padding:0 12px 12px; }
+.venue-box-open { padding:0 0 12px; }
+.venue-box-header { padding:12px 12px 6px; font-weight:900; display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--ink); }
+.venue-box-header span:last-child { color:var(--muted); font-size:.9rem; font-weight:750; text-align:right; }
+.venue-actions { padding:0 12px 8px !important; }
+.venue-chips { padding:0 12px 0 !important; max-height:42vh; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+@media (max-height:720px) { .venue-chips { max-height:30vh; } }
+
 .small-muted { color:var(--muted); font-size:.88rem; }
 .day-section { margin:0 0 24px; }
 .day-title { position:sticky; top:184px; z-index:12; display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:10px 0; background:var(--bg); border-bottom:1px solid var(--line); }
@@ -121,9 +129,11 @@ button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px sol
     <div class="filter-panel-head"><span class="filter-title">Filters</span><button class="mini-done" id="doneTop" type="button">Done</button></div>
     <div class="filter-scroll">
       <div class="filter-status" id="filterStatus">266 events shown</div>
-      <details class="venue-box"><summary><span>Venue selection</span><span id="venueSummary">All venues selected</span></summary>
-        <div class="chips" aria-label="Venue quick actions"><button class="chip" type="button" data-action="all-venues" aria-pressed="false">All venues</button><button class="clear-link" type="button" data-action="clear-venues">Clear venues</button></div>
-        <div class="chips" id="venueFilters" aria-label="Venue filters"><button class="chip venue-chip active" type="button" data-action="venue" data-venue="Stage on the Green" aria-pressed="true" style="--venue:#2f8f60"><span class="dot" style="background:#2f8f60"></span>Stage on the Green</button>
+      <div class="filter-row venue-filter-row"><div class="filter-label">Venues</div>
+        <div class="venue-box venue-box-open">
+          <div class="venue-box-header"><span>Venue filters</span><span id="venueSummary">All venues selected</span></div>
+          <div class="chips venue-actions" aria-label="Venue quick actions"><button class="chip" type="button" data-action="all-venues" aria-pressed="false">All venues</button><button class="clear-link" type="button" data-action="clear-venues">Clear venues</button></div>
+          <div class="chips venue-chips" id="venueFilters" aria-label="Venue filters"><button class="chip venue-chip active" type="button" data-action="venue" data-venue="Stage on the Green" aria-pressed="true" style="--venue:#2f8f60"><span class="dot" style="background:#2f8f60"></span>Stage on the Green</button>
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="The Wild Woods" aria-pressed="true" style="--venue:#7b4bb3"><span class="dot" style="background:#7b4bb3"></span>The Wild Woods</button>
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="Madame Wong&#x27;s House of Wrong" aria-pressed="true" style="--venue:#dd4d6a"><span class="dot" style="background:#dd4d6a"></span>Madame Wong&#x27;s House of Wrong</button>
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="Secret Gin Garden" aria-pressed="true" style="--venue:#c98f2f"><span class="dot" style="background:#c98f2f"></span>Secret Gin Garden</button>
@@ -144,7 +154,8 @@ button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px sol
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="Pool Garden" aria-pressed="true" style="--venue:#54a6a4"><span class="dot" style="background:#54a6a4"></span>Pool Garden</button>
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="Ye Olde Owl House" aria-pressed="true" style="--venue:#98764f"><span class="dot" style="background:#98764f"></span>Ye Olde Owl House</button>
 <button class="chip venue-chip active" type="button" data-action="venue" data-venue="Captain Inkus Tattoo Parlour" aria-pressed="true" style="--venue:#c05283"><span class="dot" style="background:#c05283"></span>Captain Inkus Tattoo Parlour</button></div>
-      </details>
+        </div>
+      </div>
       <div class="filter-row"><div class="filter-label">Day</div><div class="chips" aria-label="Day filter"><button class="chip day-chip active" type="button" data-action="day" data-day="all" aria-pressed="true">All weekend</button>
 <button class="chip day-chip" type="button" data-action="day" data-day="Friday" aria-pressed="false">Friday</button>
 <button class="chip day-chip" type="button" data-action="day" data-day="Saturday" aria-pressed="false">Saturday</button>
