@@ -1,6 +1,6 @@
 # The Great Estate Events
 
-A single-file static schedule for The Great Estate festival weekend.
+A single-file static schedule for The Great Estate festival weekend..
 
 ## Publish with GitHub Pages
 
